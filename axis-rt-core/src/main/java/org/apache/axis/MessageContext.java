@@ -38,6 +38,7 @@ import javax.xml.namespace.QName;
 import javax.xml.rpc.Call;
 import javax.xml.rpc.handler.soap.SOAPMessageContext;
 import java.io.File;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -316,7 +317,7 @@ public class MessageContext implements SOAPMessageContext {
             try {
                 //or create and delete a file in the temp dir to make
                 //sure we have write access to it.
-                File tf= File.createTempFile("Axis", ".tmp");
+                File tf= Files.createTempFile("Axis", ".tmp").toFile();
                 File dir= tf.getParentFile();
                 if (tf.exists()) {
                     tf.delete();

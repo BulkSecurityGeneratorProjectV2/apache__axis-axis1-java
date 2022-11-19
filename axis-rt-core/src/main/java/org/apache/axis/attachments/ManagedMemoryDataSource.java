@@ -22,6 +22,7 @@ import org.apache.axis.utils.Messages;
 import org.apache.commons.logging.Log;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.io.BufferedInputStream;
 
 /**
@@ -383,11 +384,10 @@ public class ManagedMemoryDataSource implements javax.activation.DataSource {
                             : mc.getStrProp(
                                     MessageContext.ATTACHMENTS_DIR);
 
-                    diskCacheFile = java.io.File.createTempFile("Axis", ".att",
-                            (attdir == null)
-                            ? null
-                            : new File(
-                                    attdir));
+                    diskCacheFile = Files.createTempFile((attdir == null)
+                        ? null
+                        : new File(
+                        attdir).toPath(), "Axis", ".att").toFile();
 
                     if(log.isDebugEnabled()) {
                         log.debug(

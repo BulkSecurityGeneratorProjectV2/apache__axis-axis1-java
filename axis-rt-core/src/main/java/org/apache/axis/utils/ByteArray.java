@@ -28,6 +28,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
 
 /**
  * Class ByteArray
@@ -293,7 +294,7 @@ public class ByteArray extends OutputStream {
      * @throws IOException
      */
     protected void switchToBackingStore() throws IOException {
-        bs_handle = File.createTempFile("Axis", ".msg");
+        bs_handle = Files.createTempFile("Axis", ".msg").toFile();
         bs_handle.createNewFile();
         bs_handle.deleteOnExit();
         bs_stream = new FileOutputStream(bs_handle);
